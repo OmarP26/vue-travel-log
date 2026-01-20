@@ -8,10 +8,7 @@
         <p class="py-6">
           Record your travel experiences and share them with the world.
         </p>
-        <button class="btn btn-accent">
-          Get Started
-          <Icon name="tabler:brand-github-copilot" size="24" />
-        </button>
+        <AuthButton />
       </div>
     </div>
   </div>

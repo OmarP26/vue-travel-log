@@ -1,31 +1,31 @@
-import { int, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
-  id: int().primaryKey({ autoIncrement: true }),
+  id: text("id").primaryKey(), // string id
   name: text().notNull(),
   email: text().notNull().unique(),
   emailVerified: integer({ mode: "boolean" }).notNull(),
   image: text(),
-  createdAt: integer().notNull(),
-  updatedAt: integer().notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });
 
 export const session = sqliteTable("session", {
-  id: int().primaryKey({ autoIncrement: true }),
+  id: text("id").primaryKey(), // string id
   expiresAt: integer().notNull(),
   token: text().notNull().unique(),
-  createdAt: integer().notNull(),
-  updatedAt: integer().notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
   ipAddress: text(),
   userAgent: text(),
-  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
+  userId: text().notNull().references(() => user.id, { onDelete: "cascade" }),
 });
 
 export const account = sqliteTable("account", {
-  id: int().primaryKey({ autoIncrement: true }),
+  id: text("id").primaryKey(), // string id
   accountId: text().notNull(),
   providerId: text().notNull(),
-  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
+  userId: text().notNull().references(() => user.id, { onDelete: "cascade" }),
   accessToken: text(),
   refreshToken: text(),
   idToken: text(),
@@ -33,15 +33,15 @@ export const account = sqliteTable("account", {
   refreshTokenExpiresAt: integer(),
   scope: text(),
   password: text(),
-  createdAt: integer().notNull(),
-  updatedAt: integer().notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });
 
 export const verification = sqliteTable("verification", {
-  id: int().primaryKey({ autoIncrement: true }),
-  identifier: text().notNull(),
-  value: text().notNull(),
-  expiresAt: integer().notNull(),
-  createdAt: integer(),
-  updatedAt: integer(),
+  id: text("id").primaryKey(), // string id
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expiresAt: integer("expires_at").notNull(), // epoch ms
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
 });
