@@ -5,6 +5,7 @@
     "": {
       "name": "travel-log",
       "dependencies": {
+        "@indoorequal/vue-maplibre-gl": "^8.4.2",
         "@libsql/client": "^0.17.0",
         "@nuxt/eslint": "1.12.1",
         "@nuxtjs/color-mode": "4.0.0",

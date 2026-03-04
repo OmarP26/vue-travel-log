@@ -19,7 +19,7 @@ function toggleSidebar() {
 
 <template>
   <div class="flex-1 flex">
-    <div class="bg-base-100 border-2 border-primary transition-all duration-300" :class="{ 'w-64': isSidebarOpen, 'w-18': !isSidebarOpen }">
+    <div class="bg-base-100 border-2 border-primary transition-all duration-300 shrink-0" :class="{ 'w-64': isSidebarOpen, 'w-18': !isSidebarOpen }">
       <div
         class="flex cursor-pointer hover:bg-base-200"
         :class="{ 'justify-center': !isSidebarOpen, 'justify-end': isSidebarOpen }"
@@ -72,11 +72,13 @@ function toggleSidebar() {
         />
       </div>
     </div>
-    <div class="flex flex-1 flex-col">
-      <NuxtPage />
-      <Map
-        class="flex-1"
-      />
+    <div class="flex-1 overflow-auto">
+      <div class="flex flex-col size-full">
+        <NuxtPage />
+        <Map
+          class="flex-1"
+        />
+      </div>
     </div>
   </div>
 </template>
